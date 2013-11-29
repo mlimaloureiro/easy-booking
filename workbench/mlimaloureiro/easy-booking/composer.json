@@ -1,0 +1,24 @@
+{
+    "name": "mlimaloureiro/easy-booking",
+    "description": "",
+    "authors": [
+        {
+            "name": "mlimaloureiro",
+            "email": "me@mloureiro.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations",
+            "src/controllers"
+        ],
+        "psr-0": {
+            "Mlimaloureiro\\EasyBooking\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
