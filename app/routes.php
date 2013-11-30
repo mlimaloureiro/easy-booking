@@ -13,5 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	echo EasyBooking::greetings();
+
+	return View::make('easy-booking::test');
 });

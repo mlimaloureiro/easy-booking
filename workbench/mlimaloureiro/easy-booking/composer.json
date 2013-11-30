@@ -14,7 +14,8 @@
     "autoload": {
         "classmap": [
             "src/migrations",
-            "src/controllers"
+            "src/controllers",
+            "src/facades",
         ],
         "psr-0": {
             "Mlimaloureiro\\EasyBooking\\": "src/"

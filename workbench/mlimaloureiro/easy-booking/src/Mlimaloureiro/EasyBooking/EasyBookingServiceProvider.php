@@ -28,7 +28,15 @@ class EasyBookingServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+		$this->app['easybooking'] = $this->app->share(function($app) {
+			return new EasyBooking;
+		});
+
+		$this->app->booting(function()
+		{
+		  $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+		  $loader->alias('EasyBooking', 'Mlimaloureiro\EasyBooking\Facades\EasyBooking');
+		});
 	}
 
 	/**
@@ -38,7 +46,7 @@ class EasyBookingServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array();
+		return array('easybooking');
 	}
 
 }
