@@ -13,6 +13,5 @@
 
 Route::get('/', function()
 {
-	echo EasyBooking::greetings();
-
+	EasyBooking::getTodaySchedule();
 });

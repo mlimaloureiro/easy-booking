@@ -1,6 +1,7 @@
 <?php namespace Mlimaloureiro\EasyBooking;
 
 use Illuminate\Support\ServiceProvider;
+use App;
 
 class EasyBookingServiceProvider extends ServiceProvider {
 
@@ -19,6 +20,7 @@ class EasyBookingServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('mlimaloureiro/easy-booking');
+
 		require_once __DIR__.'/../../routes.php';
 	}
 
@@ -29,15 +31,24 @@ class EasyBookingServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+
+		App::register('LMongo\LMongoServiceProvider');
+
 		$this->app['easybooking'] = $this->app->share(function($app) {
-			return new EasyBooking;
+			return new EasyBooking();
 		});
 
 		$this->app->booting(function()
 		{
 		  $loader = \Illuminate\Foundation\AliasLoader::getInstance();
 		  $loader->alias('EasyBooking', 'Mlimaloureiro\EasyBooking\Facades\EasyBooking');
+		  $loader->alias('LMongo', 'LMongo\Facades\LMongo');
+		  $loader->alias('EloquentMongo', 'LMongo\Eloquent\Model');
 		});
+
+
+
+
 	}
 
 	/**

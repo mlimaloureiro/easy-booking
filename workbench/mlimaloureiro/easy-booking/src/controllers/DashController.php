@@ -1,5 +1,7 @@
 <?php namespace Mlimaloureiro\EasyBooking;
 
+use View;
+
 class DashController extends BaseController {
 
 	public function __construct() 
