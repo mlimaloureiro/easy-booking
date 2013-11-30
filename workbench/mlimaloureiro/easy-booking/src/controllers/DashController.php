@@ -9,7 +9,7 @@ class DashController extends BaseController {
 
 	public function index() 
 	{
-		echo "USING THE CONTROLLER";
+		return View::make('easy-booking::layout');
 	}
 
 }

@@ -15,7 +15,7 @@ Route::group(array('prefix' => 'easybooking'), function()
 {
 
 	Route::get('main', function() {
-		return View::make('easy-booking::test');
+		return View::make('easy-booking::layout');
 	});
 
 	Route::get('controller', '\Mlimaloureiro\EasyBooking\DashController@index');

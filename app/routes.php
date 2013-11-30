@@ -15,5 +15,4 @@ Route::get('/', function()
 {
 	echo EasyBooking::greetings();
 
-	return View::make('easy-booking::test');
 });
