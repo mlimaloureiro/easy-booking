@@ -1,21 +1,12 @@
 <?php namespace Mlimaloureiro\EasyBooking;
 
 
-class Room implements RoomInterface {
+class Room  {
 
 	public function __construct() 
 	{
 
 	}
-
-	
-	
-
-
-
-
-
-
 
 }
 

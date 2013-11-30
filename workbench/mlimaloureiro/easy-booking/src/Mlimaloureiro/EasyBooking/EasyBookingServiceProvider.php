@@ -35,7 +35,7 @@ class EasyBookingServiceProvider extends ServiceProvider {
 		App::register('LMongo\LMongoServiceProvider');
 
 		$this->app['easybooking'] = $this->app->share(function($app) {
-			return new EasyBooking();
+			return new EasyBooking(new Reservation(),new Room());
 		});
 
 		$this->app->booting(function()
@@ -45,10 +45,6 @@ class EasyBookingServiceProvider extends ServiceProvider {
 		  $loader->alias('LMongo', 'LMongo\Facades\LMongo');
 		  $loader->alias('EloquentMongo', 'LMongo\Eloquent\Model');
 		});
-
-
-
-
 	}
 
 	/**
