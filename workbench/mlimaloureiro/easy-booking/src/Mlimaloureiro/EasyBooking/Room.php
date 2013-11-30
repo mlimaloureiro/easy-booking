@@ -3,11 +3,9 @@
 
 class Room  {
 
-	public function __construct() 
-	{
+	protected $collection;
 
-	}
-
+	
 }
 
 

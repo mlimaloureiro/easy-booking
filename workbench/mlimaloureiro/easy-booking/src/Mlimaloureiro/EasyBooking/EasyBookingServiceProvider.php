@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use App;
+use LMongo;
 
 class EasyBookingServiceProvider extends ServiceProvider {
 
@@ -33,9 +34,10 @@ class EasyBookingServiceProvider extends ServiceProvider {
 	{
 
 		App::register('LMongo\LMongoServiceProvider');
+		App::register('ExpressiveDateServiceProvider');
 
 		$this->app['easybooking'] = $this->app->share(function($app) {
-			return new EasyBooking(new Reservation(),new Room());
+			return new EasyBooking(new Reservation(), new Room());
 		});
 
 		$this->app->booting(function()

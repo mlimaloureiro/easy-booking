@@ -5,30 +5,31 @@ use LMongo;
 
 class EasyBooking {
   
-	protected $reservations;
-	protected $rooms;
+	protected $reservation;
+	protected $room;
 	protected $connection;
 	protected $mongo;
 	
-	public function __construct($reservations,$rooms)
-  	{
+	public function __construct($reservation, $room)
+  {
   		
-  		$this->reservations = new $reservations;
-  		$this->rooms = new RoomsInterface;
-  		
-  		$this->connection = LMongo::connection();
-  		$this->mongo = $this->connection->getMongoDB();
-  		$collection_names = $this->mongo->getCollectionNames();
+  	$this->reservation = $reservation;
+  	$this->room = $room;
+  	$this->connection = LMongo::connection();
+  	$this->mongo = $this->connection->getMongoDB();
+  	$collection_names = $this->mongo->getCollectionNames();
+  }
 
-  	}
+  public function reservation()
+  {
+		return $this->reservation;
+ 	}
 
-  	public function getTodaySchedule() {
-  		echo "today schedule";
-  	}
+  public function room()
+  {
+  	return $this->room;
+  }
 
-  	public function getRecentActivity() {}
-
-  	public function renderButton() {}
 
 }
 
