@@ -19,6 +19,7 @@ class EasyBookingServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('mlimaloureiro/easy-booking');
+		require_once __DIR__.'/../../routes.php';
 	}
 
 	/**

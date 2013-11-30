@@ -15,7 +15,7 @@
         "classmap": [
             "src/migrations",
             "src/controllers",
-            "src/facades",
+            "src/facades"
         ],
         "psr-0": {
             "Mlimaloureiro\\EasyBooking\\": "src/"
