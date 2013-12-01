@@ -26,15 +26,18 @@ Route::get('/', function()
 						],
 			
 						"reservationDate" => time(),
-						"checkIn" => "1385892000",
-						"checkOut" => "1386421200",
-						"roomTitle" => "Quarto A - Apartamento 3",
-						"roomID" => "1"
+						"checkin" => "1385892000",
+						"checkout" => "1386421200",
+						"roomtitle" => "Quarto A - Apartamento 3",
+						"roomID" => "1",
+						"status" => "pending",
+						"price" => "120.00",
+
 	];
 
 
-	EasyBooking::reservation()->insert($reservation);
-	*/
+	EasyBooking::reservationManager()->insert($reservation);
+	
 
 	$start = strtotime(date('Y-m-d H:i:s',strtotime('2013-12-01 10:00:00')));
 	$end = strtotime(date('Y-m-d H:i:s',strtotime('2013-12-07 13:00:00')));
@@ -52,6 +55,57 @@ Route::get('/', function()
 		print_r($res);
 		echo "<br /><hr />";
 	}
+	*/
+
+	/*
+
+	$reservations = EasyBooking::ReservationManager()->all();
+
+	foreach($reservations as $res) 
+	{
+		print_r($res);
+		echo "<br /><hr />";
+	}
+
+	*/
+
+	/*
+	$reservation = EasyBooking::ReservationManager()->get("529a4f0d7cb393e4070041ad");
+
+	if($reservation) {
+
+		echo $reservation->_id;
+		$reservation->delete();
+	} else {
+		echo "false";
+	}
+	*/
+
+	/* working
+	$reservation = EasyBooking::ReservationManager()->create();
+
+	$reservation->client['firstName'] = 'Pedro Carmona';
+	$reservation->client['lastName'] = 'Sousa';
+	$reservation->client['fullName'] = 'Pedro Carmona Sousa';
+	$reservation->client['email'] = 'pcarmona@gmail.com';
+	$reservation->client['cardID'] = '23131549';
+	$reservation->client['phone'] = '964769899';
+
+	$reservation->reservationDate = time();
+	$reservation->checkin = "1385893000";
+	$reservation->checkout = "1386421400";
+	$reservation->roomTitle = "Quarto B - Apartamento 1";
+	$reservation->roomID = "2";
+	$reservation->status = "pending";
+	$reservation->price = "370.00";
+	$reservation->totalPersons = "1";
+
+	$reservation->save();
+
+	echo $reservation->_id;
+	*/
+
+
 
 
 });

@@ -1,35 +1,33 @@
 <?php namespace Mlimaloureiro\EasyBooking;
 
-use ReservationInterface;
 use LMongo;
 
 class EasyBooking {
   
-	protected $reservation;
-	protected $room;
+	protected $reservationManager;
+	protected $roomManager;
 	protected $connection;
 	protected $mongo;
 	
-	public function __construct($reservation, $room)
+	public function __construct($reservationManager, $roomManager)
   {
   		
-  	$this->reservation = $reservation;
-  	$this->room = $room;
+  	$this->reservationManager = $reservationManager;
+  	$this->roomManager = $roomManager;
   	$this->connection = LMongo::connection();
   	$this->mongo = $this->connection->getMongoDB();
   	$collection_names = $this->mongo->getCollectionNames();
   }
 
-  public function reservation()
+  public function ReservationManager()
   {
-		return $this->reservation;
+		return $this->reservationManager;
  	}
 
-  public function room()
+  public function RoomManager()
   {
-  	return $this->room;
+  	return $this->roomManager;
   }
-
 
 }
 

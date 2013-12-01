@@ -37,7 +37,7 @@ class EasyBookingServiceProvider extends ServiceProvider {
 		App::register('ExpressiveDateServiceProvider');
 
 		$this->app['easybooking'] = $this->app->share(function($app) {
-			return new EasyBooking(new Reservation(), new Room());
+			return new EasyBooking(new ReservationManager(), new RoomManager());
 		});
 
 		$this->app->booting(function()
