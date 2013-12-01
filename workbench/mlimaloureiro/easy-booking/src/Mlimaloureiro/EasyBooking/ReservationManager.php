@@ -69,21 +69,22 @@ class ReservationManager {
 		$result =  LMongo::collection($this->collection)
 													->where(function($query) {
 
-														$query->where('checkIn', $this->checkin)->andWhere('roomID', $this->room);
+														$query->where('checkin', $this->checkin)->andWhere('roomID', $this->room);
 													})
 													->orWhere(function($query) {
 
-														$query->where('checkOut', $this->checkout)->andWhere('roomID', $this->room);
+														$query->where('checkout', $this->checkout)->andWhere('roomID', $this->room);
 													})
 													->orWhere(function($query) {
 
-														$query->orWhereBetween('checkIn', $this->checkin, $this->checkout)->andWhere('roomID', $this->room);
+														$query->orWhereBetween('checkin', $this->checkin, $this->checkout)->andWhere('roomID', $this->room);
 													})
 													->orWhere(function($query) {
 
-														$query->orWhereBetween('checkOut', $this->checkin, $this->checkout)->andWhere('roomID', $this->room);
+														$query->orWhereBetween('checkout', $this->checkin, $this->checkout)->andWhere('roomID', $this->room);
 													})
 													->count();
+
 		return $result > 0 ? 0 : 1;
 
 	}

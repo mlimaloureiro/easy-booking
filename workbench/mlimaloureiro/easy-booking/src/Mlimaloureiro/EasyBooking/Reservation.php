@@ -6,7 +6,9 @@ class Reservation extends ReservationManager {
 
 	protected $collection = "reservations";
 
-	protected $data;
+	/* array of erros this instance has */
+	
+	protected $errors = [];
 
 	/* array with required fields to place a new reservation, this is necessary for validation */
 
@@ -32,6 +34,8 @@ class Reservation extends ReservationManager {
 
 	}
 
+	/* converts mongo fetched array to object */
+
 	private function mongoToObject()
 	{
 		foreach($query as $key => $value)
@@ -41,6 +45,8 @@ class Reservation extends ReservationManager {
 
 		return $this;
 	}
+
+	/* do the opposite */
 
 	private function objectToMongo()
 	{
@@ -56,36 +62,14 @@ class Reservation extends ReservationManager {
 		return $array;
 	}
 
-
-	public function create($data = [])
-	{
-		// small validation 
-
-		if(sizeOf($data) == 0 || !$this->validate($data))
-		{
-			throw new Exception("Incomplete data to store a new reservation.");
-		}
-
-		// check availability
-
-		if($this->availability($data['roomID'], $data['checkin'], $data['checkout'])) {
-
-			$reservation = new Reservation();
-			$reservation->new($data);
-
-			$id = LMongo::collection($this->collection)->insert($data);
-			return 1;
-
-		} else {
-
-			return 0;
-		}
-	}
+	/* delete from mongo */
 
 	public function delete()
 	{
 		LMongo::collection($this->collection)->where('_id', $this->_id)->remove();
 	}
+
+	/* save it to mongo, returns if successfull */
 
 	public function save()
 	{
@@ -94,8 +78,8 @@ class Reservation extends ReservationManager {
 			$values = $this->objectToMongo();
 
 			$this->_id = LMongo::collection($this->collection)->insert($values);
-			echo "done";
 
+			return;
 		}
 	}
 
@@ -122,15 +106,16 @@ class Reservation extends ReservationManager {
 
 		return 1;
 	}
+
+	/* display error messages */
+
+	public function displayErrors()
+	{
+		return $this->errors;
+	}
+
 	
 }
-
-
-
-
-
-
-
 
 
 

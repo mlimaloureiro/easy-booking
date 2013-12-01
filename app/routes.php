@@ -81,15 +81,22 @@ Route::get('/', function()
 	}
 	*/
 
-	/* working
+	
 	$reservation = EasyBooking::ReservationManager()->create();
 
+	$clientArray = ['firstName' => 'Pedro Carmona','lastName' => 'Sousa','fullName' => 'Pedro Carmona Sousa',
+				'email' => 'pcarmona@gmail.com', 'cardID' => '23131549', 'phone' => '964769899'];
+
+	$reservation->client = $clientArray;
+	
+	/*
 	$reservation->client['firstName'] = 'Pedro Carmona';
 	$reservation->client['lastName'] = 'Sousa';
 	$reservation->client['fullName'] = 'Pedro Carmona Sousa';
 	$reservation->client['email'] = 'pcarmona@gmail.com';
 	$reservation->client['cardID'] = '23131549';
 	$reservation->client['phone'] = '964769899';
+	*/
 
 	$reservation->reservationDate = time();
 	$reservation->checkin = "1385893000";
@@ -100,12 +107,10 @@ Route::get('/', function()
 	$reservation->price = "370.00";
 	$reservation->totalPersons = "1";
 
-	$reservation->save();
-
-	echo $reservation->_id;
-	*/
-
-
-
-
+	if($reservation->save()) {
+		echo $reservation->_id;
+	} else {
+		echo "room not available";
+	}
+	
 });
